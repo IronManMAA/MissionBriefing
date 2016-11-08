@@ -30,9 +30,12 @@
     //    Hint: there is a string literal that represents empty
     //
     
-    [self.agentNameTextField setText:<#what goes here?#>];
-    self.greetingLabel.text = <#how about here?#>;
-    self.missionBriefingTextView.text = <#and here?#>;
+    [self.agentNameTextField setText: @"" ];
+    //<#what goes here?#>];
+    self.greetingLabel.text = @"" ];
+    // <#how about here?#>;
+    self.missionBriefingTextView.text = @"" ];
+    //<#and here?#>;
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,7 +55,9 @@
     //
     // 2. Check whether there is text in BOTH the name and password textfields
     //
-    if (<#the name textfield should go here#> && <#the password textfield should go here#>)
+    if (self.agentNameTextField && self.agentPasswordTextField)
+//        if (<#the name textfield should go here#> && <#the password textfield should go here#>)
+
     {
         //
         // 3. The greetingLabel needs to be populated with the the string "Good evening, Agent #", where # is the last name of
@@ -64,8 +69,12 @@
         
         NSString *agentName = self.agentNameTextField.text;
         // Additional step(s) to remove only the last name
-        self.greetingLabel.text = <#look at #3 above for what text belongs here#>;
+        NSArray *agentLastName = [agentName componentsSeparatedByString:@" "];
+
+        self.greetingLabel.text = "Good evening, Agent: %@" Self.agentLastName.text
+        //<#look at #3 above for what text belongs here#>;
         
+
         //
         // 4. The mission briefing textview needs to be populated with the briefing from HQ, but it must also include the last
         //    name of the agent that logged in. You will notice in the text a "%@" string after the word "Agent". This
@@ -75,7 +84,9 @@
         //    Set the textview text property to the paragraph in "MissionBriefing.txt"
         //
         
-        self.missionBriefingTextView.text = [NSString stringWithFormat:<#look in missionbriefing.txt for what goes here#>, <#what needs to be placed inside the preceding text?#>];
+        self.missionBriefingTextView.text = [NSString stringWithFormat: %@,Self.agentLastName.text];
+        //<#look in missionbriefing.txt for what goes here#>
+        //,<#what needs to be placed inside the preceding text?#>];
         
         //
         // 5. The view's background color needs to switch to green to indicate a successful login by the agent.
@@ -86,10 +97,12 @@
         //
         //    Once you have the color object, you should be able to set the view's background color to this object.
         //
+        + (UIColor *)colorWithRed:(0.585)red green:(0.78)green blue:(0.188)blue alpha:(1)alpha;
         
-        UIColor *authenticatedBackgroundColor = <#how do we set the color?#>;
+        UIColor *authenticatedBackgroundColor = green;
         // Additional step to set the above color object to self.view's background color
-        self.view.backgroundColor = <#how do we use the above color?#>;
+        self.view.backgroundColor = self.authenticatedBackgroundColor;
+        //<#how do we use the above color?#>;
     }
     else
     {
@@ -102,9 +115,11 @@
         //
         //    Once you have the color object, you should be able to set the view's background color to this object.
         //
-        UIColor *accessDeniedBackgroundColor = <#this looks similar to above#>;
+        + (UIColor *)colorWithRed:(0.78)red green:(0.188)green blue:(0.188)blue alpha:(1)alpha;
+        
+        UIColor *authenticatedBackgroundColor = red;
         // Additional step to set the above color object to self.view's background color
-        self.view.backgroundColor = <#what color should the background be in this case?#>;
+        self.view.backgroundColor = self.authenticatedBackgroundColor;
     }
 }
 
